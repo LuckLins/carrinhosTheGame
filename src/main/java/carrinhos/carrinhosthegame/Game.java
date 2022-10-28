@@ -10,6 +10,7 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -41,6 +42,7 @@ public class Game extends javax.swing.JFrame {
         acelerar.setVisible(false);
         acelerar.setEnabled(false);
         correr.setVisible(false);
+        enemyEsco.setVisible(false);
 
 
         /* QUASE FUNCIONA TECLAS
@@ -63,7 +65,8 @@ public class Game extends javax.swing.JFrame {
     int derrotaVic = 0;
     int DeroJog = 0;
     int vitoriaJog = 0;
-
+     public void setCorBarra(Color corBarra){
+     }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -95,6 +98,7 @@ public class Game extends javax.swing.JFrame {
         acelerar = new javax.swing.JButton();
         Selecionar = new javax.swing.JButton();
         persoEscolhido = new javax.swing.JLabel();
+        enemyEsco = new javax.swing.JLabel();
         rank = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         voltar = new javax.swing.JButton();
@@ -226,6 +230,11 @@ public class Game extends javax.swing.JFrame {
         gamePlay.add(sair, new org.netbeans.lib.awtextra.AbsoluteConstraints(668, 543, -1, -1));
 
         selectEnemy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Tonny Tunado", "Kombo", "Cris Crash", "Senhor V8", "Campeão", "Simone", "Tobias", "Michael Chumassa", "Akira", "Pé Grande", "Bongo", "MC Carrius", "MC Truta" }));
+        selectEnemy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectEnemyActionPerformed(evt);
+            }
+        });
         gamePlay.add(selectEnemy, new org.netbeans.lib.awtextra.AbsoluteConstraints(498, 244, 222, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bandeiras.png"))); // NOI18N
@@ -259,7 +268,11 @@ public class Game extends javax.swing.JFrame {
 
         persoEscolhido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         persoEscolhido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/escolherPer.png"))); // NOI18N
-        gamePlay.add(persoEscolhido, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 199, 200, 120));
+        gamePlay.add(persoEscolhido, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 200, 120));
+
+        enemyEsco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        enemyEsco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/escolherPer.png"))); // NOI18N
+        gamePlay.add(enemyEsco, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, 200, 120));
 
         cards.add(gamePlay, "gamePlay");
 
@@ -405,66 +418,79 @@ public class Game extends javax.swing.JFrame {
                     Imagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tonytunado.jpg")));
                     Imagem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tonytunado.jpg")));
                     persoEscolhido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tonytunado.jpg")));
+                    barJogador.setForeground(new Color(192, 126, 83));
                     break;
                 case "Bongo":
                     Imagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bongo.png")));
                     Imagem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bongo.png")));
                     persoEscolhido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bongo.png")));
+                    barJogador.setForeground(new Color(8, 43, 196));
                     break;
                 case "Campeão":
                     Imagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/campeao.png")));
                     Imagem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/campeao.png")));
                     persoEscolhido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/campeao.png")));
+                    barJogador.setForeground(new Color(255, 186, 27));
                     break;
                 case "Cris Crash":
                     Imagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cris.png")));
                     Imagem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cris.png")));
                     persoEscolhido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cris.png")));
+                    barJogador.setForeground(new Color(246, 134, 190));
                     break;
                 case "Kombo":
                     Imagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kombo.png")));
                     Imagem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kombo.png")));
                     persoEscolhido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kombo.png")));
+                    barJogador.setForeground(new Color(126, 154, 79));
                     break;
                 case "MC Carrius":
                     Imagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mccarrius.png")));
                     Imagem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mccarrius.png")));
                     persoEscolhido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mccarrius.png")));
+                    barJogador.setForeground(new Color(194, 22, 7));
                     break;
                 case "MC Truta":
                     Imagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mctruta.png")));
                     Imagem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mctruta.png")));
                     persoEscolhido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mctruta.png")));
+                    barJogador.setForeground(new Color(226, 194, 5));
                     break;
                 case "Michael Chumassa":
                     Imagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/michael.png")));
                     Imagem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/michael.png")));
                     persoEscolhido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/michael.png")));
+                    barJogador.setForeground(new Color(248, 48, 32));
                     break;
                 case "Pé Grande":
                     Imagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pegrande.png")));
                     Imagem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pegrande.png")));
                     persoEscolhido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pegrande.png")));
+                    barJogador.setForeground(new Color(204, 231, 244));
                     break;
                 case "Senhor V8":
                     Imagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/senhorv8.png")));
                     Imagem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/senhorv8.png")));
                     persoEscolhido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/senhorv8.png")));
+                    barJogador.setForeground(new Color(250, 247, 74));
                     break;
                 case "Simone":
                     Imagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/simone.png")));
                     Imagem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/simone.png")));
                     persoEscolhido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/simone.png")));
+                    barJogador.setForeground(new Color(128, 59, 152));
                     break;
                 case "Akira":
                     Imagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/akira.png")));
                     Imagem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/akira.png")));
                     persoEscolhido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/akira.png")));
+                    barJogador.setForeground(new Color(206, 44, 33));
                     break;
                 case "Tobias":
                     Imagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tobias.png")));
                     Imagem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tobias.png")));
                     persoEscolhido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tobias.png")));
+                    barJogador.setForeground(new Color(96, 172, 187));
                     break;
                 case "Selecione":
                     Imagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/escolherPer.png")));
@@ -502,7 +528,9 @@ public class Game extends javax.swing.JFrame {
             acelerar.setVisible(false);
             acelerar.setEnabled(false);
             correr.setVisible(false);
-            selectEnemy.setEnabled(true);
+            selectEnemy.setVisible(true);
+            enemyEsco.setVisible(false);
+            Selecionar.setEnabled(true);
             nameVen.setText(Charc);
             vitoriaJog += 1;
             quantVitJog.setText("" + vitoriaJog);
@@ -522,7 +550,7 @@ public class Game extends javax.swing.JFrame {
         String enemy = selectEnemy.getSelectedItem().toString();
         String Charc = listaChar.getSelectedItem().toString();
         acelerar.setEnabled(true);
-
+        Selecionar.setEnabled(false);
         Random aleatorio = new Random();
         int num_ale = aleatorio.nextInt(2);
 
@@ -571,7 +599,9 @@ public class Game extends javax.swing.JFrame {
                     acelerar.setVisible(false);
                     acelerar.setEnabled(false);
                     correr.setVisible(false);
-                    selectEnemy.setEnabled(true);
+                    selectEnemy.setVisible(true);
+                    enemyEsco.setVisible(false);
+                    Selecionar.setEnabled(true);
                     DeroJog += 1;
                     quantDeroJog.setText("" + DeroJog);
                     cru.atualizarVitBanco(Charc, DeroJog);
@@ -594,12 +624,79 @@ public class Game extends javax.swing.JFrame {
             barJogador.setVisible(true);
             barOponente.setVisible(true);
             acelerar.setVisible(true);
-            selectEnemy.setEnabled(false);
+            selectEnemy.setVisible(false);
+            enemyEsco.setVisible(true);
             correr.setVisible(true);
         }
 
 // TODO add your handling code here:
     }//GEN-LAST:event_SelecionarActionPerformed
+
+    private void selectEnemyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectEnemyActionPerformed
+        String enemy = selectEnemy.getSelectedItem().toString();
+        if (null != enemy) {
+            switch (enemy) {
+                case "Tonny Tunado":
+                    enemyEsco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tonytunado.jpg")));
+                    barOponente.setForeground(new Color(192, 126, 83));
+                    break;
+                case "Bongo":
+                    enemyEsco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bongo.png")));
+                    barOponente.setForeground(new Color(8, 43, 196));
+                    break;
+                case "Campeão":
+                    enemyEsco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/campeao.png")));
+                    barOponente.setForeground(new Color(255, 186, 27));
+                    break;
+                case "Cris Crash":
+                    enemyEsco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cris.png")));
+                    barOponente.setForeground(new Color(246, 134, 190));
+                    break;
+                case "Kombo":
+                    enemyEsco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kombo.png")));
+                    barOponente.setForeground(new Color(126, 154, 79));
+                    break;
+                case "MC Carrius":
+                    enemyEsco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mccarrius.png")));
+                    barOponente.setForeground(new Color(194, 22, 7));
+                    break;
+                case "MC Truta":
+                    enemyEsco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mctruta.png")));
+                    barOponente.setForeground(new Color(226, 194, 5));
+                    break;
+                case "Michael Chumassa":
+                    enemyEsco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/michael.png")));
+                    barOponente.setForeground(new Color(248, 48, 32));
+                    break;
+                case "Pé Grande":
+                    enemyEsco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pegrande.png")));
+                    barOponente.setForeground(new Color(204, 231, 244));
+                    break;
+                case "Senhor V8":
+                    enemyEsco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/senhorv8.png")));
+                    barOponente.setForeground(new Color(250, 247, 74));
+                    break;
+                case "Simone":
+                    enemyEsco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/simone.png")));
+                    barOponente.setForeground(new Color(128, 59, 152));
+                    break;
+                case "Akira":
+                    enemyEsco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/akira.png")));
+                    barOponente.setForeground(new Color(206, 44, 33));
+                    break;
+                case "Tobias":
+                    enemyEsco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tobias.png")));
+                    barOponente.setForeground(new Color(96, 172, 187));
+                    break;
+                case "Selecione":
+                    enemyEsco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/escolherPer.png")));
+                    break;
+                default:
+                    break;
+            }
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selectEnemyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -612,7 +709,7 @@ public class Game extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Metal".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -647,6 +744,7 @@ public class Game extends javax.swing.JFrame {
     private javax.swing.JPanel cards;
     private javax.swing.JPanel charSelect;
     private javax.swing.JButton correr;
+    private javax.swing.JLabel enemyEsco;
     private javax.swing.JPanel gamePlay;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
